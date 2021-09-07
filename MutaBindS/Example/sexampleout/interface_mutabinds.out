@@ -1,0 +1,176 @@
+ Parameter: PATH <- "/HOME/CHENY/MUTABIND2/SEXAMPLEOUT"
+ Parameter: PROTNAME <- "MUTABINDS"
+ Parameter: PATHPARA <- "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                (CHARMM) - Free Version 41b2   February 15, 2017                
+                                Revision unknown                                
+       Copyright(c) 1984-2014  President and Fellows of Harvard College
+                              All Rights Reserved
+     Current operating system: Linux-3.10.0-693.11.6.el7.x86_64(x86_64)@loc     
+                 Created on  7/21/20 at 14:01:52 by user: cheny       
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+ RDTITL> * THIS EXAMPLE CALCULATES THE THE BINDING ENERGY.
+ RDTITL> *
+  
+ CHARMM>    bomlev -2
+  
+ CHARMM>     
+  
+ CHARMM>    set pathpara @pathpara
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+ Parameter: PATHPARA <- "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read in Topology and  Parameter files
+ CHARMM>    read rtf card name @pathpara/top_all36_prot.rtf
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sinputfiles/top_all36_prot.rtf::
+ MAINIO> Residue topology file being read from unit  90.
+ TITLE> *>>>>>>>>CHARMM36 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> MAY 2011 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read param card name @pathpara/par_all36_prot.prm
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sinputfiles/par_all36_prot.prm::
+
+          PARAMETER FILE BEING READ FROM UNIT 90
+ TITLE> *>>>> CHARMM36 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> FEB. 2012 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARRDR> WARNING: ATOM FOR NBOND ON2B DOESNT EXIST
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    read psf card name @path/@protname_charmm.psf
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/SEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDS"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sexampleout/mutabinds_charmm.psf::
+ MAINIO> Protein structure file being read from unit  90.
+ TITLE>  * PSF
+ TITLE>  *  DATE:     7/21/20     14: 1:51      CREATED BY USER: cheny
+ TITLE>  *
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        2   Number of residues   =      337
+         Number of atoms         =     4826   Number of groups     =     1492
+         Number of bonds         =     4876   Number of angles     =     8771
+         Number of dihedrals     =    12802   Number of impropers  =      895
+         Number of cross-terms   =      333
+         Number of HB acceptors  =      494   Number of HB donors  =      550
+         Number of NB exclusions =        0   Total charge =    0.00000
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read coor card name @path/@protname_charmm.crd
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/SEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDS"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sexampleout/mutabinds_charmm.crd::
+          SPATIAL COORDINATES BEING READ FROM UNIT 90
+ TITLE> * COORDS
+ TITLE> *  DATE:     7/21/20     14: 1:51      CREATED BY USER: CHENY
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    define a select segid ch1 end
+ SELRPN>   3801 atoms have been selected out of   4826
+  
+ CHARMM>    define b select segid ch2 end
+ SELRPN>   1025 atoms have been selected out of   4826
+  
+ CHARMM>     
+  
+ CHARMM>    stream @pathpara/sasa.str
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sinputfiles/sasa.str::
+ OPNLGU> Unit 99 opened for READONLY access to /home/cheny/mutabind2/sinputfiles/sasa.str
+
+                    INPUT STREAM SWITCHING TO UNIT    99
+ RDTITL> SET RSOL     1.4
+ RDTITL> No title read.
+ Parameter: IN1 <- "" <empty>
+  
+ CHARMM>    set rsol     1.4         ! solvent probe radius
+ Parameter: RSOL <- "1.4"
+  
+ CHARMM>     
+  
+ CHARMM>    ! molecular surface (MS) of the complex
+ CHARMM>    coor surface rprobe @rsol select A .or. B end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   4826 atoms have been selected out of   4826
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    set MSac = ?area
+ RDCMND substituted energy or value "?AREA" to "12239.9663"
+ Parameter: MSAC <- "12239.9663"
+  
+ CHARMM>     
+  
+ CHARMM>    ! molecular surface (MS) of A
+ CHARMM>    coor surface rprobe @rsol select A end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   3801 atoms have been selected out of   4826
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    set MSa  = ?area
+ RDCMND substituted energy or value "?AREA" to "9654.92402"
+ Parameter: MSA <- "9654.92402"
+  
+ CHARMM>     
+  
+ CHARMM>    ! molecular surface (MS) of B
+ CHARMM>    coor surface rprobe @rsol select B end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   1025 atoms have been selected out of   4826
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    set MSc  = ?area
+ RDCMND substituted energy or value "?AREA" to "4212.02863"
+ Parameter: MSC <- "4212.02863"
+  
+ CHARMM>     
+  
+ CHARMM>    ! The difference in MS between the complex and the free proteins, is the
+ CHARMM>    ! surface buried upon complex formation, and is stored of deltaMS.
+ CHARMM>     
+  
+ CHARMM>    calc DeltaMS =  @MSac - @MSa - @MSc
+ Parameter: MSAC -> "12239.9663"
+ Parameter: MSA -> "9654.92402"
+ Parameter: MSC -> "4212.02863"
+Evaluating: 12239.9663-9654.92402-4212.02863
+ Parameter: DELTAMS <- "-1626.98635"
+  
+ CHARMM>     
+  
+ CHARMM>    stop
+ VCLOSE: Closing unit   99 with status "KEEP"
+$$$$$$  New timer profile $$$$$
+ Total time                      2.80 Other:            0.00
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    NO WARNINGS WERE ISSUED
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     2.80  SECONDS 
+                         CPU TIME:     2.80  SECONDS 

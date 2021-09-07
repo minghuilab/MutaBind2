@@ -1,0 +1,2 @@
+PDBfile	Partner1	Partner2	MutChain	Mutation_PDB	Result_Id	isPI	ΔΔG	Interface	Deleterious	DDE_vdw	DDG_solv	DDG_fold	CS	SA_com_wt	SA_part_wt	N_cont_wt
+MUTABINDS.pdb	E_1	I_1	I_1	L45P	1	0	5.28	yes	yes	0.8234	0.8076	1.1427	0.7672	-0.1248	0.6736	0.7612

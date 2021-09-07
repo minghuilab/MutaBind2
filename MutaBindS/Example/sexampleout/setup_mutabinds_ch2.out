@@ -1,0 +1,193 @@
+ Parameter: PATH <- "/HOME/CHENY/MUTABIND2/SEXAMPLEOUT"
+ Parameter: PROTNAME <- "MUTABINDS"
+ Parameter: I <- "2"
+ Parameter: PATHPARA <- "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                (CHARMM) - Free Version 41b2   February 15, 2017                
+                                Revision unknown                                
+       Copyright(c) 1984-2014  President and Fellows of Harvard College
+                              All Rights Reserved
+     Current operating system: Linux-3.10.0-693.11.6.el7.x86_64(x86_64)@loc     
+                 Created on  7/21/20 at 14:01:51 by user: cheny       
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+ RDTITL>  
+ RDTITL> No title read.
+
+      ***** LEVEL  1 WARNING FROM <RDTITL> *****
+      ***** Title expected.
+      ******************************************
+      BOMLEV (  0) IS NOT REACHED. WRNLEV IS  5
+
+  
+ CHARMM>     
+  
+ CHARMM>    set pathpara @pathpara
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+ Parameter: PATHPARA <- "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read in Topology and  Parameter files
+ CHARMM>    read rtf card name @pathpara/top_all36_prot.rtf
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sinputfiles/top_all36_prot.rtf::
+ MAINIO> Residue topology file being read from unit  90.
+ TITLE> *>>>>>>>>CHARMM36 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> MAY 2011 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read param card name @pathpara/par_all36_prot.prm
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/SINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sinputfiles/par_all36_prot.prm::
+
+          PARAMETER FILE BEING READ FROM UNIT 90
+ TITLE> *>>>> CHARMM36 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> FEB. 2012 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARRDR> WARNING: ATOM FOR NBOND ON2B DOESNT EXIST
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read sequence from the PDB coordinate file
+ CHARMM>    open unit 1 card read name @path/@protname_ch@I.pdb
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/SEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDS"
+ Parameter: I -> "2"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sexampleout/mutabinds_ch2.pdb::
+ OPNLGU> Unit  1 opened for READONLY access to /home/cheny/mutabind2/sexampleout/mutabinds_ch2.pdb
+  
+ CHARMM>    read sequ pdb unit 1
+ MAINIO> Sequence information being read from unit   1.
+ TITLE>  *
+
+          RESIDUE SEQUENCE --    63 RESIDUES
+          LYS SER PHE PRO GLU VAL VAL GLY LYS THR VAL ASP GLN ALA ARG GLU TYR PHE THR LEU 
+          HSD TYR PRO GLN TYR ASN VAL TYR PHE LEU PRO GLU GLY SER PRO VAL THR LEU ASP LEU 
+          ARG TYR ASN ARG VAL ARG VAL PHE TYR ASN PRO GLY THR ASN VAL VAL ASN HSD VAL PRO 
+          HSD VAL GLY 
+ ***** Message from SEQRDR ***** THE SYSTEM CONTAINS 16 TITRATABLE GROUPS
+ THE USER MUST PREDETERMINE THE PROTONATION STATE THROUGH THE SEQUENCE AND RTF
+ HIS -  0  HSD -  3  HSE -  0  HSP -  0  ASP -  2  GLU -  3  LYS -  2  TYR -  6
+  
+ CHARMM>     
+  
+ CHARMM>    ! now generate the PSF and also the IC table (SETU keyword)
+ CHARMM>    generate setu ch@I
+ Parameter: I -> "2"
+ THE PATCH 'NTER' WILL BE USED FOR THE FIRST RESIDUE
+ THE PATCH 'CTER' WILL BE USED FOR THE LAST  RESIDUE
+ GENPSF> Segment   1 has been generated. Its identifier is CH2.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =       63
+         Number of atoms         =     1025   Number of groups     =      325
+         Number of bonds         =     1043   Number of angles     =     1875
+         Number of dihedrals     =     2781   Number of impropers  =      188
+         Number of cross-terms   =       61
+         Number of HB acceptors  =       96   Number of HB donors  =      114
+         Number of NB exclusions =        0   Total charge =    1.00000
+  
+ CHARMM>    rewind unit 1
+                    REWINDING UNIT     1
+  
+ CHARMM>     
+  
+ CHARMM>    ! set bomlev to -1 to avois sying on lack of hydrogen coordinates
+ CHARMM>    bomlev -1
+  
+ CHARMM>     
+  
+ CHARMM>    ! read coor pdb resid unit 1  ! donot work for missing coordinates
+ CHARMM>    read coor pdb unit 1
+  read CHARMM-pdb format
+          SPATIAL COORDINATES BEING READ FROM UNIT  1
+ TITLE>  *
+  
+ CHARMM>     
+  
+ CHARMM>    ! them put bomlev back up to 0
+ CHARMM>    bomlev 0
+  
+ CHARMM>     
+  
+ CHARMM>    close unit 1
+ VCLOSE: Closing unit    1 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    ! prints out number of atoms that still have undefined coordinates.
+ CHARMM>    define test select segid ch@I .and. ( .not. hydrogen ) .and. ( .not. init ) show end
+ Parameter: I -> "2"
+ The following atoms are currently set:
+SEGId RESId RESName  .. TYPEs ..
+ SELRPN>      0 atoms have been selected out of   1025
+  
+ CHARMM>     
+  
+ CHARMM>    ic para
+  
+ CHARMM>    ic fill preserve
+  
+ CHARMM>    ic build
+  
+ CHARMM>    hbuild sele all end
+ SELRPN>   1025 atoms have been selected out of   1025
+
+      ***** LEVEL  4 WARNING FROM <GTHBUI> *****
+      ***** Zero selection specified
+      ******************************************
+      BOMLEV (  0) IS NOT REACHED. WRNLEV IS  5
+
+  
+ CHARMM>     
+  
+ CHARMM>    ! write out the protein structure file (psf) and
+ CHARMM>    ! the coordinate file in pdb and crd format.
+ CHARMM>     
+  
+ CHARMM>    write psf card name @path/@protname_ch@I.psf
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/SEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDS"
+ Parameter: I -> "2"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sexampleout/mutabinds_ch2.psf::
+ RDTITL> * PSF
+ RDTITL> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    write coor card name @path/@protname_ch@I.crd
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/SEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDS"
+ Parameter: I -> "2"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/sexampleout/mutabinds_ch2.crd::
+ RDTITL> * COORDS
+ RDTITL> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    stop
+$$$$$$  New timer profile $$$$$
+ Total time                      0.10 Other:            0.00
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MOST SEVERE WARNING WAS AT LEVEL  4
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     0.10  SECONDS 
+                         CPU TIME:     0.10  SECONDS 
