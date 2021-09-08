@@ -1,0 +1,603 @@
+ Parameter: PATH <- "/HOME/CHENY/MUTABIND2/MEXAMPLEOUT"
+ Parameter: PROTNAME <- "MUTABINDM_M1"
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                (CHARMM) - Free Version 41b2   February 15, 2017                
+                                Revision unknown                                
+       Copyright(c) 1984-2014  President and Fellows of Harvard College
+                              All Rights Reserved
+     Current operating system: Linux-3.10.0-693.11.6.el7.x86_64(x86_64)@loc     
+                 Created on  7/22/20 at  9:11:23 by user: cheny       
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+ RDTITL> * THIS EXAMPLE CALCULATES THE THE BINDING ENERGY.
+ RDTITL> *
+  
+ CHARMM>    bomlev -2
+  
+ CHARMM>     
+  
+ CHARMM>    set pathpara /home/cheny/mutabind2/minputfiles
+ Parameter: PATHPARA <- "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read in Topology and  Parameter files
+ CHARMM>    read rtf card name @pathpara/top_all36_prot.rtf
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/minputfiles/top_all36_prot.rtf::
+ MAINIO> Residue topology file being read from unit  90.
+ TITLE> *>>>>>>>>CHARMM36 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> MAY 2011 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read param card name @pathpara/par_all36_prot.prm
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/minputfiles/par_all36_prot.prm::
+
+          PARAMETER FILE BEING READ FROM UNIT 90
+ TITLE> *>>>> CHARMM36 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> FEB. 2012 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARRDR> WARNING: ATOM FOR NBOND ON2B DOESNT EXIST
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    read psf card name @path/@protname_charmm.psf
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/MEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDM_M1"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/mexampleout/mutabindm_m1_charmm.psf::
+ MAINIO> Protein structure file being read from unit  90.
+ TITLE>  * PSF
+ TITLE>  *  DATE:     7/22/20      9: 8:37      CREATED BY USER: cheny
+ TITLE>  *
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        2   Number of residues   =      337
+         Number of atoms         =     4829   Number of groups     =     1491
+         Number of bonds         =     4879   Number of angles     =     8774
+         Number of dihedrals     =    12805   Number of impropers  =      897
+         Number of cross-terms   =      333
+         Number of HB acceptors  =      492   Number of HB donors  =      555
+         Number of NB exclusions =        0   Total charge =    2.00000
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read coor card name @path/@protname_min.crd
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/MEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDM_M1"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/mexampleout/mutabindm_m1_min.crd::
+          SPATIAL COORDINATES BEING READ FROM UNIT 90
+ TITLE> * THIS EXAMPLE PRODUCE THE FRAME.
+ TITLE> *  DATE:     7/22/20      9: 8:50      CREATED BY USER: CHENY
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    ! for partner of mutchain(mp), another partner(op)
+ CHARMM>    define a select segid ch1 end
+ SELRPN>   3796 atoms have been selected out of   4829
+  
+ CHARMM>    define b select segid ch2 end
+ SELRPN>   1033 atoms have been selected out of   4829
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    stream @pathpara/vdw_pb.str
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/minputfiles/vdw_pb.str::
+ OPNLGU> Unit 99 opened for READONLY access to /home/cheny/mutabind2/minputfiles/vdw_pb.str
+
+                    INPUT STREAM SWITCHING TO UNIT    99
+ RDTITL>  
+ RDTITL> No title read.
+ Parameter: IN1 <- "" <empty>
+  
+ CHARMM>     
+  
+ CHARMM>    set gammaP   0.00542     ! for Gasa (non-polar dGsolv)
+ Parameter: GAMMAP <- "0.00542"
+  
+ CHARMM>    set betaP    0.92        ! for Gasa
+ Parameter: BETAP <- "0.92"
+  
+ CHARMM>    set rsol     1.4         ! solvent probe radius
+ Parameter: RSOL <- "1.4"
+  
+ CHARMM>     
+  
+ CHARMM>    set EpsG    = 1.0
+ Parameter: EPSG <- "1.0"
+  
+ CHARMM>     
+  
+ CHARMM>    update cutnb 999 switch vswitch eps @EpsG
+ Parameter: EPSG -> "1.0"
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  =999.000 CTEXNB =999.000 CTONNB =995.000 CTOFNB =997.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found  13653 exclusions and  12601 interactions(1-4)
+ <MAKGRP> found   4338 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR 11657207 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+ 11643553 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        0 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+  
+ CHARMM>     
+  
+ CHARMM>    ! calculate the vdw energy between A and B
+ CHARMM>     
+  
+ CHARMM>    interaction sele A end sele B end
+ SELRPN>   3796 atoms have been selected out of   4829
+ SELRPN>   1033 atoms have been selected out of   4829
+ INTER:  Normal Atom Nonbondselected     3921268 from a total of    11643553
+INTE ENR:  Eval#     ENERgy      Delta-E         GRMS
+INTE EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+INTE>        1   -212.42518      0.00000      0.73099
+INTE EXTERN>      -92.51544   -119.90974      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>    set vdwENER   = ?vdw
+ RDCMND substituted energy or value "?VDW" to "-92.5154414"
+ Parameter: VDWENER <- "-92.5154414"
+  
+ CHARMM>    set elecENER  = ?elec
+ RDCMND substituted energy or value "?ELEC" to "-119.909737"
+ Parameter: ELECENER <- "-119.909737"
+  
+ CHARMM>     
+  
+ CHARMM>    ! Inititalzation of parameters used in the PBEQ module for PB calculations.
+ CHARMM>     
+  
+ CHARMM>    set Ionr    = 2.0        ! ion exclusion radius (Stern layer)
+ Parameter: IONR <- "2.0"
+  
+ CHARMM>    set temp    = 300        ! you can set up temp in PBEQ calculation
+ Parameter: TEMP <- "300"
+  
+ CHARMM>    set maxi    = 10000      ! number of iterations
+ Parameter: MAXI <- "10000"
+  
+ CHARMM>    set EpsP    = 2.0        ! dielectric constant for the protein interior
+ Parameter: EPSP <- "2.0"
+  
+ CHARMM>    set EpsG    = 1.0        ! Vacuum dielectric constant
+ Parameter: EPSG <- "1.0"
+  
+ CHARMM>    set EpsW    = 80.0       ! solvent dielectric constant
+ Parameter: EPSW <- "80.0"
+  
+ CHARMM>    set Conc    = 0.0        ! salt concentration
+ Parameter: CONC <- "0.0"
+  
+ CHARMM>    set Dcel_c  = 0.4        ! the grid spacing in the finite-difference (centered on Xcen,Ycen,Zcen)
+ Parameter: DCEL_C <- "0.4"
+  
+ CHARMM>    set Dcel_f  = 0.4        ! the grid spacing in the finite-difference (centered on Xcen,Ycen,Zcen)
+ Parameter: DCEL_F <- "0.4"
+  
+ CHARMM>    set LEdge   = 10.0       ! distance between a protein atom and a grid
+ Parameter: LEDGE <- "10.0"
+  
+ CHARMM>                             ! LEdge*2 for coarse-gird calculations and LEdge/2 for fine-grid calculations (see below)
+  
+ CHARMM>    set Options =  watr 1.4 reentrant ! Let's use the molecular surface
+ Parameter: OPTIONS <- "WATR 1.4 REENTRANT"
+  
+ CHARMM>     
+  
+ CHARMM>    coor stat
+ STATISTICS FOR      4829 SELECTED ATOMS:
+    XMIN =   16.883880 XMAX =   61.047590 XAVE =   36.590034
+    YMIN =  -48.703740 YMAX =    1.218820 YAVE =  -23.993428
+    ZMIN =  -25.057710 ZMAX =   31.984130 ZAVE =    5.497012
+    WMIN =    0.000000 WMAX =    0.000000 WAVE =    0.000000
+  
+ CHARMM>    coor orient norotate
+
+ ORIENT THE COORDINATES TO ALIGN WITH AXIS
+
+ CENTER OF ATOMS BEFORE TRANSLATION    36.59003   -23.99343     5.49701
+ SELECTED COORDINATES TRANSLATED IN THE MAIN SET.
+
+  
+ CHARMM>    coor stat
+ STATISTICS FOR      4829 SELECTED ATOMS:
+    XMIN =  -19.706154 XMAX =   24.457556 XAVE =   -0.000000
+    YMIN =  -24.710312 YMAX =   25.212248 YAVE =    0.000000
+    ZMIN =  -30.554722 ZMAX =   26.487118 ZAVE =    0.000000
+    WMIN =    0.000000 WMAX =    0.000000 WAVE =    0.000000
+  
+ CHARMM>    set Xcen = ?xave
+ RDCMND substituted energy or value "?XAVE" to "-1.278057295E-13"
+ Parameter: XCEN <- "-1.278057295E-13"
+  
+ CHARMM>    set Ycen = ?yave
+ RDCMND substituted energy or value "?YAVE" to "1.223916852E-14"
+ Parameter: YCEN <- "1.223916852E-14"
+  
+ CHARMM>    set Zcen = ?zave
+ RDCMND substituted energy or value "?ZAVE" to "8.511357331E-15"
+ Parameter: ZCEN <- "8.511357331E-15"
+  
+ CHARMM>     
+  
+ CHARMM>    calc Nclx_c = int ( ( @LEdge * 4.0 + ?Xmax - ?Xmin ) / @{Dcel_c} )
+ Parameter: LEDGE -> "10.0"
+ Parameter: DCEL_C -> "0.4"
+ RDCMND substituted energy or value "?XMAX" to "24.4575563"
+ RDCMND substituted energy or value "?XMIN" to "-19.7061537"
+Evaluating: INT((10.0*4.0+24.4575563--19.7061537)/0.4)
+ Parameter: NCLX_C <- "210"
+  
+ CHARMM>    calc Ncly_c = int ( ( @LEdge * 4.0 + ?Ymax - ?Ymin ) / @{Dcel_c} )
+ Parameter: LEDGE -> "10.0"
+ Parameter: DCEL_C -> "0.4"
+ RDCMND substituted energy or value "?YMAX" to "25.2122479"
+ RDCMND substituted energy or value "?YMIN" to "-24.7103121"
+Evaluating: INT((10.0*4.0+25.2122479--24.7103121)/0.4)
+ Parameter: NCLY_C <- "224"
+  
+ CHARMM>    calc Nclz_c = int ( ( @LEdge * 4.0 + ?Zmax - ?Zmin ) / @{Dcel_c} )
+ Parameter: LEDGE -> "10.0"
+ Parameter: DCEL_C -> "0.4"
+ RDCMND substituted energy or value "?ZMAX" to "26.4871175"
+ RDCMND substituted energy or value "?ZMIN" to "-30.5547225"
+Evaluating: INT((10.0*4.0+26.4871175--30.5547225)/0.4)
+ Parameter: NCLZ_C <- "242"
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    !*********************************************************************
+ CHARMM>    !enter the PBEQ module
+ CHARMM>     
+  
+ CHARMM>    PBEQ
+
+   Calculations with the Poisson-Boltzmann Equation 
+
+  
+   PBEQ>     
+  
+   PBEQ>    ! read in the radii used in the PB calculations
+   PBEQ>    prnlev 0
+  
+   PBEQ>    scalar wmain statistics select .not. type H* end
+ SELRPN>   2442 atoms have been selected out of   4829
+ Statistics for 2442 selected atoms:
+       minimum =    1.40000      maximum =    2.86000     weight =    2442.00    
+       average =    2.19627      variance=   0.437064     total  =    5363.29    
+  
+   PBEQ>    define check select (.not type H* ) .and. ( property wmain .eq. 0.0 ) show end
+ The following atoms are currently set:
+SEGId RESId RESName  .. TYPEs ..
+ SELRPN>      0 atoms have been selected out of   4829
+  
+   PBEQ>    if ?nsel ne 0  stop  !some heavy atom have a zero radius
+ RDCMND substituted energy or value "?NSEL" to "0"
+ Comparing "0" and "0".
+ IF test evaluated as false.  Skipping command
+  
+   PBEQ>     
+  
+   PBEQ>    ! Solv the PB equation for the complex
+   PBEQ>     
+  
+   PBEQ>    SOLVE Nclx @{nclx_c} Ncly @{ncly_c} Nclz @{nclz_c} Dcel @{Dcel_c} EpsP @EpsP EpsW @EpsW CONC @CONC Ionr @Ionr INTBP @Options -
+   PBEQ>          XBcen @Xcen YBcen @Ycen ZBcen @Zcen Select A .or. B end
+ Parameter: NCLX_C -> "210"
+ Parameter: NCLY_C -> "224"
+ Parameter: NCLZ_C -> "242"
+ Parameter: DCEL_C -> "0.4"
+ Parameter: EPSP -> "2.0"
+ Parameter: EPSW -> "80.0"
+ Parameter: CONC -> "0.0"
+ Parameter: IONR -> "2.0"
+ Parameter: OPTIONS -> "WATR 1.4 REENTRANT"
+ Parameter: XCEN -> "-1.278057295E-13"
+ Parameter: YCEN -> "1.223916852E-14"
+ Parameter: ZCEN -> "8.511357331E-15"
+ SELRPN>   4829 atoms have been selected out of   4829
+
+   Calculation with   4829 atoms
+
+   LINEARIZED PBEQ SOLVER: Successive OverRelaxation (SOR) method
+
+   ITERATION PARAMETERs
+   Maximum # iterations          (MAXITS) =    2000
+   Tolerance of convergence        (DEPS) =.200E-05
+   Mixing factor            (LAMBDA,DOME) =   1.000
+
+   CHARGE DISTRIBUTION METHOD: the trilinear interpolation
+
+   BOUNDARY POTENTIAL CALCULATION METHOD
+   The Debye-Huckel approximation for half number of boundary points along 1d-axis and
+   potential of the rest will be interpolated from nearest grid points
+
+   PHYSICAL PARAMETERs
+   Solvent probe radius          (WATR)   =    1.400 [Angs]
+   Calculation with reentrant (1.4 angs probe recommended)
+   Ion exclusion radius (Stern layer)     =    2.000 [Angs]
+   Solvent dielectric constant   (EPSW)   =   80.000
+   Protein dielectric constant   (EPSP)   =    2.000
+   Salt concentration            (CONC)   =    0.000 [moles]/[liter]
+   Temperature                   (TEMP)   =  300.000 [K]
+   Debye-Huckel factor           (KAPPA2) =    0.000 [1/Angs**2]
+
+   NUMBER OF GRID POINTS:   211   225   243
+   Box in X from  -42.000 to   42.000
+   Box in Y from  -44.800 to   44.800
+   Box in Z from  -48.400 to   48.400
+
+   Constructing all space-dependent functions
+
+   Begin iterative solution
+   Number of iterations:   892
+   The atomic contributions have been stored in WMAIN
+   Electrostatic energy [KCAL/MOL] =  117691.77969
+  
+   PBEQ>     
+  
+   PBEQ>    SET Gab = ?enpb        !Gelec for the complex
+ RDCMND substituted energy or value "?ENPB" to "117691.78"
+ Parameter: GAB <- "117691.78"
+  
+   PBEQ>     
+  
+   PBEQ>    ! Solv the PB equation for A
+   PBEQ>     
+  
+   PBEQ>    SOLVE Nclx @{nclx_c} Ncly @{ncly_c} Nclz @{nclz_c} Dcel @{Dcel_c} EpsP @EpsP EpsW @EpsW CONC @CONC Ionr @Ionr INTBP @Options -
+   PBEQ>          XBcen @Xcen YBcen @Ycen ZBcen @Zcen Select A end
+ Parameter: NCLX_C -> "210"
+ Parameter: NCLY_C -> "224"
+ Parameter: NCLZ_C -> "242"
+ Parameter: DCEL_C -> "0.4"
+ Parameter: EPSP -> "2.0"
+ Parameter: EPSW -> "80.0"
+ Parameter: CONC -> "0.0"
+ Parameter: IONR -> "2.0"
+ Parameter: OPTIONS -> "WATR 1.4 REENTRANT"
+ Parameter: XCEN -> "-1.278057295E-13"
+ Parameter: YCEN -> "1.223916852E-14"
+ Parameter: ZCEN -> "8.511357331E-15"
+ SELRPN>   3796 atoms have been selected out of   4829
+
+   Calculation with   3796 atoms
+
+   LINEARIZED PBEQ SOLVER: Successive OverRelaxation (SOR) method
+
+   ITERATION PARAMETERs
+   Maximum # iterations          (MAXITS) =    2000
+   Tolerance of convergence        (DEPS) =.200E-05
+   Mixing factor            (LAMBDA,DOME) =   1.000
+
+   CHARGE DISTRIBUTION METHOD: the trilinear interpolation
+
+   BOUNDARY POTENTIAL CALCULATION METHOD
+   The Debye-Huckel approximation for half number of boundary points along 1d-axis and
+   potential of the rest will be interpolated from nearest grid points
+
+   PHYSICAL PARAMETERs
+   Solvent probe radius          (WATR)   =    1.400 [Angs]
+   Calculation with reentrant (1.4 angs probe recommended)
+   Ion exclusion radius (Stern layer)     =    2.000 [Angs]
+   Solvent dielectric constant   (EPSW)   =   80.000
+   Protein dielectric constant   (EPSP)   =    2.000
+   Salt concentration            (CONC)   =    0.000 [moles]/[liter]
+   Temperature                   (TEMP)   =  300.000 [K]
+   Debye-Huckel factor           (KAPPA2) =    0.000 [1/Angs**2]
+
+   NUMBER OF GRID POINTS:   211   225   243
+   Box in X from  -42.000 to   42.000
+   Box in Y from  -44.800 to   44.800
+   Box in Z from  -48.400 to   48.400
+
+   Constructing all space-dependent functions
+
+   Begin iterative solution
+   Number of iterations:   884
+   The atomic contributions have been stored in WMAIN
+   Electrostatic energy [KCAL/MOL] =   92216.58227
+  
+   PBEQ>     
+  
+   PBEQ>    SET Ga = ?enpb        !Gelec for A
+ RDCMND substituted energy or value "?ENPB" to "92216.5823"
+ Parameter: GA <- "92216.5823"
+  
+   PBEQ>     
+  
+   PBEQ>    ! Solv the PB equation for B
+   PBEQ>     
+  
+   PBEQ>    SOLVE Nclx @{nclx_c} Ncly @{ncly_c} Nclz @{nclz_c} Dcel @{Dcel_c} EpsP @EpsP EpsW @EpsW CONC @CONC Ionr @Ionr INTBP @Options -
+   PBEQ>          XBcen @Xcen YBcen @Ycen ZBcen @Zcen Select B end
+ Parameter: NCLX_C -> "210"
+ Parameter: NCLY_C -> "224"
+ Parameter: NCLZ_C -> "242"
+ Parameter: DCEL_C -> "0.4"
+ Parameter: EPSP -> "2.0"
+ Parameter: EPSW -> "80.0"
+ Parameter: CONC -> "0.0"
+ Parameter: IONR -> "2.0"
+ Parameter: OPTIONS -> "WATR 1.4 REENTRANT"
+ Parameter: XCEN -> "-1.278057295E-13"
+ Parameter: YCEN -> "1.223916852E-14"
+ Parameter: ZCEN -> "8.511357331E-15"
+ SELRPN>   1033 atoms have been selected out of   4829
+
+   Calculation with   1033 atoms
+
+   LINEARIZED PBEQ SOLVER: Successive OverRelaxation (SOR) method
+
+   ITERATION PARAMETERs
+   Maximum # iterations          (MAXITS) =    2000
+   Tolerance of convergence        (DEPS) =.200E-05
+   Mixing factor            (LAMBDA,DOME) =   1.000
+
+   CHARGE DISTRIBUTION METHOD: the trilinear interpolation
+
+   BOUNDARY POTENTIAL CALCULATION METHOD
+   The Debye-Huckel approximation for half number of boundary points along 1d-axis and
+   potential of the rest will be interpolated from nearest grid points
+
+   PHYSICAL PARAMETERs
+   Solvent probe radius          (WATR)   =    1.400 [Angs]
+   Calculation with reentrant (1.4 angs probe recommended)
+   Ion exclusion radius (Stern layer)     =    2.000 [Angs]
+   Solvent dielectric constant   (EPSW)   =   80.000
+   Protein dielectric constant   (EPSP)   =    2.000
+   Salt concentration            (CONC)   =    0.000 [moles]/[liter]
+   Temperature                   (TEMP)   =  300.000 [K]
+   Debye-Huckel factor           (KAPPA2) =    0.000 [1/Angs**2]
+
+   NUMBER OF GRID POINTS:   211   225   243
+   Box in X from  -42.000 to   42.000
+   Box in Y from  -44.800 to   44.800
+   Box in Z from  -48.400 to   48.400
+
+   Constructing all space-dependent functions
+
+   Begin iterative solution
+   Number of iterations:   844
+   The atomic contributions have been stored in WMAIN
+   Electrostatic energy [KCAL/MOL] =   25470.76450
+  
+   PBEQ>     
+  
+   PBEQ>    SET Gb = ?enpb        !Gelec for B
+ RDCMND substituted energy or value "?ENPB" to "25470.7645"
+ Parameter: GB <- "25470.7645"
+  
+   PBEQ>     
+  
+   PBEQ>     
+  
+   PBEQ>    ! this difference gives the electrostatic contribution to the
+   PBEQ>    ! binding free energy (deltaGelec)
+   PBEQ>     
+  
+   PBEQ>    calc DeltaGelec =  @Gab - @Ga - @Gb
+ Parameter: GAB -> "117691.78"
+ Parameter: GA -> "92216.5823"
+ Parameter: GB -> "25470.7645"
+Evaluating: 117691.78-92216.5823-25470.7645
+ Parameter: DELTAGELEC <- "4.4332"
+  
+   PBEQ>     
+  
+   PBEQ>    END
+  
+ CHARMM>     
+  
+ CHARMM>    ! molecular surface (MS) of the complex
+ CHARMM>    coor surface rprobe @rsol select A .or. B end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   4829 atoms have been selected out of   4829
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    set MSac = ?area
+ RDCMND substituted energy or value "?AREA" to "12321.4075"
+ Parameter: MSAC <- "12321.4075"
+  
+ CHARMM>     
+  
+ CHARMM>    ! molecular surface (MS) of A
+ CHARMM>    coor surface rprobe @rsol select A end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   3796 atoms have been selected out of   4829
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    set MSa  = ?area
+ RDCMND substituted energy or value "?AREA" to "9715.95082"
+ Parameter: MSA <- "9715.95082"
+  
+ CHARMM>     
+  
+ CHARMM>    ! molecular surface (MS) of B
+ CHARMM>    coor surface rprobe @rsol select B end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   1033 atoms have been selected out of   4829
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    set MSc  = ?area
+ RDCMND substituted energy or value "?AREA" to "4248.35675"
+ Parameter: MSC <- "4248.35675"
+  
+ CHARMM>     
+  
+ CHARMM>    ! The difference in MS between the complex and the free proteins, is the
+ CHARMM>    ! surface buried upon complex formation, and is stored of deltaMS.
+ CHARMM>     
+  
+ CHARMM>    calc DeltaMS =  @MSac - @MSa - @MSc
+ Parameter: MSAC -> "12321.4075"
+ Parameter: MSA -> "9715.95082"
+ Parameter: MSC -> "4248.35675"
+Evaluating: 12321.4075-9715.95082-4248.35675
+ Parameter: DELTAMS <- "-1642.90007"
+  
+ CHARMM>    calc Gasa = @gammaP * @DeltaMS + @betaP
+ Parameter: GAMMAP -> "0.00542"
+ Parameter: DELTAMS -> "-1642.90007"
+ Parameter: BETAP -> "0.92"
+Evaluating: 0.00542*-1642.90007+0.92
+ Parameter: GASA <- "-7.98451838"
+  
+ CHARMM>     
+  
+ CHARMM>    calc DeltaG_mmpbsa = @DeltaGelec + @Gasa +  @vdwENER
+ Parameter: DELTAGELEC -> "4.4332"
+ Parameter: GASA -> "-7.98451838"
+ Parameter: VDWENER -> "-92.5154414"
+Evaluating: 4.4332+-7.98451838+-92.5154414
+ Parameter: DELTAG_MMPBSA <- "-96.0667598"
+  
+ CHARMM>    stop
+ VCLOSE: Closing unit   99 with status "KEEP"
+$$$$$$  New timer profile $$$$$
+         Electrostatic & VDW             0.15 Other:            0.00
+      Nonbond force                   0.15 Other:            0.00
+   Energy time                     0.15 Other:            0.00
+ Total time                    121.15 Other:          121.00
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    NO WARNINGS WERE ISSUED
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     2.02  MINUTES 
+                         CPU TIME:     2.02  MINUTES 
+ES 
