@@ -1,2 +1,0 @@
-PDBfile	Partner1	Partner2	MutChain	Mutation_PDB	Result_Id	isPI	PDBid	NewPartner1	NewPartner2	Mutation_cleaned
-MUTABINDS.pdb	E_1	I_1	I_1	L45P	1	0	MUTABINDS	A	B	LB38P

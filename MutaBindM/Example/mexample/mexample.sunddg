@@ -1,3 +1,0 @@
-PDBfile	Partner1	Partner2	PDBid	MutChain	Result_Id	isPI	ΔΔG	Interface	Deleterious	DDE_vdw	DDG_solv	DDG_fold	CS	SA_com_wt	SA_part_wt	dE_vdw_wt
-MUTABINDM.pdb	E_1	I_1	MUTABINDM	A	2	M1	2.39	no	yes	-0.6992	-0.47	0.9817	1.0075	0.3194	-0.1943	0.5994
-MUTABINDM.pdb	E_1	I_1	MUTABINDM	A	1	M1	2.39	no	yes	-0.6992	-0.47	0.9817	1.0075	0.3194	-0.1943	0.5994
