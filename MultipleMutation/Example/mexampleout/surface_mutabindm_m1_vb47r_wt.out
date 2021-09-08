@@ -1,0 +1,279 @@
+ Parameter: PATHINPUT <- "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+ Parameter: PATH <- "/HOME/CHENY/MUTABIND2/MEXAMPLEOUT"
+ Parameter: PROTNAME <- "MUTABINDM"
+ Parameter: CHAINM <- "CH2"
+ Parameter: RESNUMBER <- "47"
+ Parameter: PARTNER <- "B"
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                (CHARMM) - Free Version 41b2   February 15, 2017                
+                                Revision unknown                                
+       Copyright(c) 1984-2014  President and Fellows of Harvard College
+                              All Rights Reserved
+     Current operating system: Linux-3.10.0-693.11.6.el7.x86_64(x86_64)@loc     
+                 Created on  7/22/20 at  9:11:21 by user: cheny       
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+ RDTITL> SET PATHPARA /HOME/CHENY/MUTABIND2/MINPUTFILES
+ RDTITL> No title read.
+
+      ***** LEVEL  1 WARNING FROM <RDTITL> *****
+      ***** Title expected.
+      ******************************************
+      BOMLEV (  0) IS NOT REACHED. WRNLEV IS  5
+
+  
+ CHARMM>    set pathpara @pathinput
+ Parameter: PATHINPUT -> "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+ Parameter: PATHPARA <- "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read in Topology and  Parameter files
+ CHARMM>    read rtf card name @pathpara/top_all36_prot.rtf
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/minputfiles/top_all36_prot.rtf::
+ MAINIO> Residue topology file being read from unit  90.
+ TITLE> *>>>>>>>>CHARMM36 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> MAY 2011 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read param card name @pathpara/par_all36_prot.prm
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/minputfiles/par_all36_prot.prm::
+
+          PARAMETER FILE BEING READ FROM UNIT 90
+ TITLE> *>>>> CHARMM36 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>>>>>> FEB. 2012 <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *             PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARRDR> WARNING: ATOM FOR NBOND ON2B DOESNT EXIST
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    read psf card name @path/@protname_charmm.psf
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/MEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDM"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/mexampleout/mutabindm_charmm.psf::
+ MAINIO> Protein structure file being read from unit  90.
+ TITLE>  * PSF
+ TITLE>  *  DATE:     7/22/20      9: 7:48      CREATED BY USER: cheny
+ TITLE>  *
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        2   Number of residues   =      337
+         Number of atoms         =     4826   Number of groups     =     1492
+         Number of bonds         =     4876   Number of angles     =     8771
+         Number of dihedrals     =    12802   Number of impropers  =      895
+         Number of cross-terms   =      333
+         Number of HB acceptors  =      494   Number of HB donors  =      550
+         Number of NB exclusions =        0   Total charge =    0.00000
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read coor card name @path/@protname_charmm.crd
+ Parameter: PATH -> "/HOME/CHENY/MUTABIND2/MEXAMPLEOUT"
+ Parameter: PROTNAME -> "MUTABINDM"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/mexampleout/mutabindm_charmm.crd::
+          SPATIAL COORDINATES BEING READ FROM UNIT 90
+ TITLE> * COORDS
+ TITLE> *  DATE:     7/22/20      9: 7:48      CREATED BY USER: CHENY
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    define a select segid ch1 end
+ SELRPN>   3801 atoms have been selected out of   4826
+  
+ CHARMM>    define b select segid ch2 end
+ SELRPN>   1025 atoms have been selected out of   4826
+  
+ CHARMM>     
+  
+ CHARMM>    ! m:mutchain, mp:partner of mutchain
+ CHARMM>    define c select a .or. b end
+ SELRPN>   4826 atoms have been selected out of   4826
+  
+ CHARMM>    define r select segid @chainm .and. resid @resnumber end
+ Parameter: CHAINM -> "CH2"
+ Parameter: RESNUMBER -> "47"
+ SELRPN>     16 atoms have been selected out of   4826
+  
+ CHARMM>    define m select segid @chainm end
+ Parameter: CHAINM -> "CH2"
+ SELRPN>   1025 atoms have been selected out of   4826
+  
+ CHARMM>    define mp select @partner end
+ Parameter: PARTNER -> "B"
+ SELRPN>   1025 atoms have been selected out of   4826
+  
+ CHARMM>     
+  
+ CHARMM>    stream @pathpara/surface_residue.str
+ Parameter: PATHPARA -> "/HOME/CHENY/MUTABIND2/MINPUTFILES"
+ VOPEN> Attempting to open::/home/cheny/mutabind2/minputfiles/surface_residue.str::
+ OPNLGU> Unit 99 opened for READONLY access to /home/cheny/mutabind2/minputfiles/surface_residue.str
+
+                    INPUT STREAM SWITCHING TO UNIT    99
+ RDTITL> SET RSOL     1.4
+ RDTITL> No title read.
+ Parameter: IN1 <- "" <empty>
+  
+ CHARMM>    set rsol     1.4         ! solvent probe radius
+ Parameter: RSOL <- "1.4"
+  
+ CHARMM>     
+  
+ CHARMM>    ! molecular surface (MS) of M,mutchain
+ CHARMM>    coor surface rprobe @rsol select m end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   1025 atoms have been selected out of   4826
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    set MSm  = ?area
+ RDCMND substituted energy or value "?AREA" to "4212.02863"
+ Parameter: MSM <- "4212.02863"
+  
+ CHARMM>     
+  
+ CHARMM>    ! molecular surface (MS) of R,resid
+ CHARMM>    coor surf rprobe @rsol select r end
+ Parameter: RSOL -> "1.4"
+ SELRPN>     16 atoms have been selected out of   4826
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    set MSr ?area
+ RDCMND substituted energy or value "?AREA" to "300.446725"
+ Parameter: MSR <- "300.446725"
+  
+ CHARMM>     
+  
+ CHARMM>    coor surf rprobe @rsol select c end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   4826 atoms have been selected out of   4826
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    ! ASA per atom is now in WMAIN array, sum up over selected atoms
+ CHARMM>    scalar wmain statistics select r end
+ SELRPN>     16 atoms have been selected out of   4826
+ Statistics for   16 selected atoms:
+       minimum =    0.00000      maximum =    0.00000     weight =    16.0000    
+       average =    0.00000      variance=    0.00000     total  =    0.00000    
+  
+ CHARMM>    set ASAC ?STOT
+ RDCMND substituted energy or value "?STOT" to "0"
+ Parameter: ASAC <- "0"
+  
+ CHARMM>     
+  
+ CHARMM>    ! m : mutchain
+ CHARMM>    coor surf rprobe @rsol select m end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   1025 atoms have been selected out of   4826
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    ! ASA per atom is now in WMAIN array, sum up over selected atoms
+ CHARMM>    scalar wmain statistics select r end
+ SELRPN>     16 atoms have been selected out of   4826
+ Statistics for   16 selected atoms:
+       minimum =    0.00000      maximum =    0.00000     weight =    16.0000    
+       average =    0.00000      variance=    0.00000     total  =    0.00000    
+  
+ CHARMM>    set ASAM ?STOT
+ RDCMND substituted energy or value "?STOT" to "0"
+ Parameter: ASAM <- "0"
+  
+ CHARMM>     
+  
+ CHARMM>    ! mp : partner of mutchain
+ CHARMM>    coor surf rprobe @rsol select mp end
+ Parameter: RSOL -> "1.4"
+ SELRPN>   1025 atoms have been selected out of   4826
+ SURFAC: Lennard-Jones radii values being used
+ SURFAC: RPRObe=   1.40000
+ SURFAC: Analytic surface area method used
+  
+ CHARMM>    ! ASA per atom is now in WMAIN array, sum up over selected atoms
+ CHARMM>    scalar wmain statistics select r end
+ SELRPN>     16 atoms have been selected out of   4826
+ Statistics for   16 selected atoms:
+       minimum =    0.00000      maximum =    0.00000     weight =    16.0000    
+       average =    0.00000      variance=    0.00000     total  =    0.00000    
+  
+ CHARMM>    set ASAMP ?STOT
+ RDCMND substituted energy or value "?STOT" to "0"
+ Parameter: ASAMP <- "0"
+  
+ CHARMM>     
+  
+ CHARMM>    ! m
+ CHARMM>    calc rASAc = @ASAC/@MSr
+ Parameter: ASAC -> "0"
+ Parameter: MSR -> "300.446725"
+Evaluating: 0/300.446725
+ Parameter: RASAC <- "0"
+  
+ CHARMM>    calc rASAm = @ASAM/@MSr
+ Parameter: ASAM -> "0"
+ Parameter: MSR -> "300.446725"
+Evaluating: 0/300.446725
+ Parameter: RASAM <- "0"
+  
+ CHARMM>    calc drASA = @rASAm - @rASAc
+ Parameter: RASAM -> "0"
+ Parameter: RASAC -> "0"
+Evaluating: 0-0
+ Parameter: DRASA <- "0"
+  
+ CHARMM>    ! mp
+ CHARMM>    calc rASAmp = @ASAMP/@MSr
+ Parameter: ASAMP -> "0"
+ Parameter: MSR -> "300.446725"
+Evaluating: 0/300.446725
+ Parameter: RASAMP <- "0"
+  
+ CHARMM>    calc drASAp = @rASAmp - @rASAc
+ Parameter: RASAMP -> "0"
+ Parameter: RASAC -> "0"
+Evaluating: 0-0
+ Parameter: DRASAP <- "0"
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ VCLOSE: Closing unit   99 with status "KEEP"
+
+                    RETURNING TO INPUT STREAM     5
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+$$$$$$  New timer profile $$$$$
+ Total time                      1.77 Other:            0.00
+
+                    NORMAL TERMINATION BY END OF FILE
+                    NO WARNINGS WERE ISSUED
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     1.77  SECONDS 
+                         CPU TIME:     1.77  SECONDS 

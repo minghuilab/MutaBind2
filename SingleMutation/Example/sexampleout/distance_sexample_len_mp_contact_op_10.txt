@@ -1,0 +1,2 @@
+PDB_ID	mutation_cleaned	p1_p2_wt
+mutabinds	lb38p	24

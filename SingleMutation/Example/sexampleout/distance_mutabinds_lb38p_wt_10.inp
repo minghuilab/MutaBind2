@@ -1,0 +1,17 @@
+! Read in Topology and  Parameter files
+
+read rtf card name @pathpara/top_all36_prot.rtf
+read param card flex name @pathpara/par_all36_prot.prm
+stream @pathpara/toppar_water_ions.str
+
+! Get psf and coordinates
+read psf card name @path/@protname_charmm.psf
+read coor card name @path/@protname_min.crd
+
+define heavy sele .not. hydrogen end
+define backbone sele heavy .and. (type n .or. type c .or. type ca .or. type o) end
+
+! will list all contacts less than 10 between partner1 and partner2 without considering 1-4 interactions or excluded pairs.
+! without H
+COOR DISTance ENERgy CUT 10 SELE segid ch2 .and. heavy .and. (.not. backbone) END SELE segid ch1 .and. heavy .and. (.not. backbone) END
+

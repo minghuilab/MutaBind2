@@ -1,0 +1,12 @@
+## PROVEAN v1.1 output ##
+# Query sequence file:	/home/cheny/mutabind2/sexampleout/MUTABINDS_I_1.seq
+# Variation file:	/home/cheny/mutabind2/sexampleout/MUTABINDS_I_1.var
+# Protein database:	/data/zhaofy/blastdb/nr
+[14:04:11] searching related sequences...
+[14:04:15] clustering subject sequences...
+# Number of clusters:	30
+# Number of supporting sequences used:	145
+[14:04:15] computing delta alignment scores...
+## PROVEAN scores ##
+# VARIATION	SCORE
+L38P	-1.905
