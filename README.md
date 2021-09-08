@@ -82,13 +82,8 @@ MutaBind2 requires the following software and packages.
 
 <font size=4>
 	
-	Single Mutation Model
-	$ wget https://github.com/minghuilab/MutaBind2/archive/MutaBindS.tar.gz
-	$ tar -zxvf MutaBindS.tar.gz
-
-	Multiple Mutation Model 
-	$ wget https://github.com/minghuilab/MutaBind2/archive/MutaBindM.tar.gz
-	$ tar -zxvf MutaBindM.tar.gz
+	$ wget https://github.com/minghuilab/MutaBind2/archive/refs/tags/v0.0.0.tar.gz
+	$ tar -zxvf v0.0.0.tar.gz
 
 </font> 
 
@@ -100,8 +95,8 @@ MutaBind2 requires the following software and packages.
 
 <font size=4>
 
-	$ cd MutaBindS/MutaBindM
-
+	$ cd  Multiple\ Mutation
+	$ cd  Single\ Mutation
 </font> 
 
 <font size=4>
