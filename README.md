@@ -81,11 +81,12 @@ MutaBind2 requires the following software and packages.
 </font>
 
 <font size=4>
+	
 	Single Mutation Model
 	$ wget https://github.com/minghuilab/PremPS/archive/MutaBindS.tar.gz
 	$ tar -zxvf MutaBindS.tar.gz
 
-	Multiple Mutation Model
+	Multiple Mutation Model 
 	$ wget https://github.com/minghuilab/PremPS/archive/MutaBindM.tar.gz
 	$ tar -zxvf MutaBindM.tar.gz
 
