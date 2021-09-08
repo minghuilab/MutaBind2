@@ -9,7 +9,7 @@ MutaBind2 evaluates the effects of mutations on protein-protein interactions for
 ## Scoring mutations with MutaBind2
 <font size=4> 
 
-We recommend that most users who just want to obtain MutaBind2 predictions use [MutaBind2 website](https://lilab.jysw.suda.edu.cn/research/mutabind2/) to obtain scores.
+We recommend that most users who just want to obtain MutaBind2 predictions use [MutaBind2 website](https://lilab.jysw.suda.edu.cn/research/mutabind2/).
 
 </font>
 
@@ -81,12 +81,13 @@ MutaBind2 requires the following software and packages.
 </font>
 
 <font size=4>
+	
 	Single Mutation Model
-	$ wget https://github.com/minghuilab/PremPS/archive/MutaBindS.tar.gz
+	$ wget https://github.com/minghuilab/MutaBind2/archive/MutaBindS.tar.gz
 	$ tar -zxvf MutaBindS.tar.gz
 
-	Multiple Mutation Model
-	$ wget https://github.com/minghuilab/PremPS/archive/MutaBindM.tar.gz
+	Multiple Mutation Model 
+	$ wget https://github.com/minghuilab/MutaBind2/archive/MutaBindM.tar.gz
 	$ tar -zxvf MutaBindM.tar.gz
 
 </font> 
@@ -105,9 +106,10 @@ MutaBind2 requires the following software and packages.
 
 <font size=4>
 
-4. Change the path parameters in MutaBindS.py/MutaBindM.py (line 15-20)/: the software configuration path and the user's working directory (workdir) need to be changed. The working directory must be lowercase, otherwise CHARMM cannot recognize it.
+4. Change the path parameters in MutaBindS.py/MutaBindM.py: the software configuration path and the user's working directory (workdir) need to be changed. The working directory must be lowercase, otherwise CHARMM cannot recognize it.
 
 <font size=4>
+	
 	workdir = Your working directory
 	pathvmd = path for running VMD software  
 	pathcharmm = path for running CHARMM software

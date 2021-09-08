@@ -16,7 +16,48 @@ ascii_cases = ascii_uppercase + ascii_lowercase  # if this case, the maximal inp
 r = robjects.r
 r('''library(randomForest)''')
 
+# set up path for each job, which need to be changed
+workdir = "/data/webservice/mutabind2/"  # Must be changed to match the path in NCBI
+pathoutput = workdir + jobid + "out"  # Must be changed to match the path in NCBI
+
+# set up path for some softwares
+pathvmd = '/usr/local/bin/'
+pathcharmm = '/usr/local/bin/'
+pathnamd = '/home/lim9/softwares/NAMD_2.12_Source/Linux-x86_64-g++/'
+pathdssp = '/usr/local/bin/'
+pathprovean = ''
+pathrscript = '/usr/local/bin/'
+
+# set up path for jobpath
+jobpath = workdir + jobid
+
+# mkdir for joboutput
+os.system("mkdir %s" % pathoutput)
+
+# set up path for inputfiles
+pathpara = workdir + "minputfiles"
+pathinput = workdir + "minputfiles"
+
+# set up input and output filename
+in_file = jobpath + '/' + jobid + '.input'  # inputfile name
+out_file = jobpath + '/' + jobid + '.sunddg'  # outputfile name
+
+# input jobid
+jobid = ''
+
+#####################################
+# Step-1: Parse parameters
+#####################################
+myopts, args = getopt.getopt(sys.argv[1:], "i:z")
+
+for o, a in myopts:
+    if o == '-i':
+        jobid = a
+    else:
+        print("Usage: %s -i jobid" % sys.argv[0])
+	
 normal_format_pro = ['CYS','GLN','ILE','SER','VAL','MET','ASN','PRO','LYS','THR','PHE','ALA','HIS','GLY','ASP','LEU','ARG','TRP','GLU','TYR']
+
 # map residue name three letters to one
 map = {"GLY": "G", "ALA": "A", "SER": "S", "THR": "T", "CYS": "C",
        "VAL": "V", "LEU": "L", "ILE": "I", "MET": "M", "PRO": "P",
@@ -43,103 +84,6 @@ mapr = {"G": "GLY", "A": "ALA", "S": "SER", "T": "THR", "C": "CYS",
         "X": "ASX", "X": "GLX", "X": "CSO", "X": "HIP", "X": "MSE",
         "X": "UNK", "X": "SEC", "X": "PYL", "X": "SEP", "X": "TPO",
         "X": "PTR", "X": "XLE", "X": "XAA", }
-
-# input jobid
-jobid = ''
-
-#####################################
-# Step-1: Parse parameters
-#####################################
-myopts, args = getopt.getopt(sys.argv[1:], "i:z")
-
-for o, a in myopts:
-    if o == '-i':
-        jobid = a
-    else:
-        print("Usage: %s -i jobid" % sys.argv[0])
-# read workdir to change workdir & softwave path
-workdir_file = open("workdir.txt","r")
-workdir_dict = {}
-workdir_line = workdir_file.readline()
-
-while workdir_line:
-
-    if workdir_line[0] != "#":
-        temp_arr = workdir_line.split('=')
-
-        dir_name =temp_arr[0].strip()
-        dir_path =temp_arr[1].strip()
-        if dir_path != ' ' and dir_path != '':
-            if dir_path[-1] != '/':
-                dir_path = dir_path + '/'
-
-        else:
-            dir_path = ''
-        workdir_dict[dir_name] = dir_path
-
-    workdir_line = workdir_file.readline()
-
-if 'workdir' in workdir_dict.keys() and workdir_dict['workdir'] != '':
-    workdir = workdir_dict['workdir']
-else:
-    workdir = "/data/webservice/mutabind2/"
-if 'pathvmd' in workdir_dict.keys() and workdir_dict['pathvmd'] != '':
-    pathvmd = workdir_dict['pathvmd']
-else:
-    pathvmd = "/usr/local/bin/"
-if 'pathcharmm' in workdir_dict.keys() and workdir_dict['pathcharmm'] != '':
-    pathcharmm = workdir_dict['pathcharmm']
-else:
-    pathcharmm = '/usr/local/bin/'
-if 'pathnamd' in workdir_dict.keys() and workdir_dict['pathnamd'] != '':
-    pathnamd = workdir_dict['pathnamd']
-else:
-    pathnamd = '/home/lim9/softwares/NAMD_2.12_Source/Linux-x86_64-g++/'
-if 'pathdssp' in workdir_dict.keys() and workdir_dict['pathdssp'] != '':
-    pathdssp = workdir_dict['pathdssp']
-else:
-    pathdssp = '/usr/local/bin/'
-if 'pathprovean' in workdir_dict.keys() and workdir_dict['pathprovean'] != '':
-    pathprovean = workdir_dict['pathprovean']
-else:
-    pathprovean = ''
-if 'pathrscript' in workdir_dict.keys() and workdir_dict['pathrscript'] != '':
-    pathrscript = workdir_dict['pathrscript']
-else:
-    pathrscript = '/usr/local/bin/'
-if 'pathoutput' in workdir_dict.keys() and workdir_dict['pathoutput'] != '':
-    pathoutput = workdir_dict['pathoutput']
-else:
-    pathoutput = workdir + jobid + "out"
-
-        
-'''
-# set up path for each job, which need to be changed
-workdir = "/data/webservice/mutabind2/"  # Must be changed to match the path in NCBI
-pathoutput = workdir + jobid + "out"  # Must be changed to match the path in NCBI
-
-# set up path for some softwares
-pathvmd = '/usr/local/bin/'
-pathcharmm = '/usr/local/bin/'
-pathnamd = '/home/lim9/softwares/NAMD_2.12_Source/Linux-x86_64-g++/'
-pathdssp = '/usr/local/bin/'
-pathprovean = ''
-pathrscript = '/usr/local/bin/'
-'''
-# set up path for jobpath
-jobpath = workdir + jobid
-
-# mkdir for joboutput
-os.system("mkdir %s" % pathoutput)
-
-# set up path for inputfiles
-pathpara = workdir + "minputfiles"
-pathinput = workdir + "minputfiles"
-
-# set up input and output filename
-in_file = jobpath + '/' + jobid + '.input'  # inputfile name
-out_file = jobpath + '/' + jobid + '.sunddg'  # outputfile name
-
 
 # process biounit model and write another colummn for indicating chains information from inputfiles
 def ProPDB1():
