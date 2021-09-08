@@ -82,8 +82,8 @@ MutaBind2 requires the following software and packages.
 
 <font size=4>
 	
-	$ wget https://github.com/minghuilab/MutaBind2/archive/refs/tags/v0.0.0.tar.gz
-	$ tar -zxvf v0.0.0.tar.gz
+	$ wget https://github.com/minghuilab/MutaBind2/archive/refs/tags/v1.0.0.tar.gz
+	$ tar -zxvf v1.0.0.tar.gz
 
 </font> 
 
