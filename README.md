@@ -109,6 +109,7 @@ MutaBind2 requires the following software and packages.
 4. Change the path parameters in MutaBindS.py/MutaBindM.py (line 15-20)/: the software configuration path and the user's working directory (workdir) need to be changed. The working directory must be lowercase, otherwise CHARMM cannot recognize it.
 
 <font size=4>
+	
 	workdir = Your working directory
 	pathvmd = path for running VMD software  
 	pathcharmm = path for running CHARMM software
