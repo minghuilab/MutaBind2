@@ -9,7 +9,7 @@ MutaBind2 evaluates the effects of mutations on protein-protein interactions for
 ## Scoring mutations with MutaBind2
 <font size=4> 
 
-We recommend that most users who just want to obtain MutaBind2 predictions use [MutaBind2 website](https://lilab.jysw.suda.edu.cn/research/mutabind2/) to obtain scores.
+We recommend that most users who just want to obtain MutaBind2 predictions use [MutaBind2 website](https://lilab.jysw.suda.edu.cn/research/mutabind2/).
 
 </font>
 
